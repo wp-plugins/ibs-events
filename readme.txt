@@ -1,20 +1,20 @@
 === IBS Events ===
 Contributors: hmoore71
 Donate link: https://indianbendsolutions.net/donate/
-Plugin URI: https://indianbendsolutions.net/documentation/ibs-Events/
+Plugin URI: https://indianbendsolutions.net/documentation/
 Author URI: https://indianbendsolutions.net/
-Tags: events 
+Tags: events, calendar 
 Requires at least: 4.0
 Tested up to: 4.1
 Stable tag: 0.1
 License: GPL2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add post-type ibs_event for event scheduling and display in IBS Calendar.
+A light weight event scheduling plugin for use with the IBS Calendar plugin.
 
 == Description ==
 * IBS Events is a light weight event scheduling plugin for use with the IBS Calendar plugin. 
-* Scheduling is simular to Google Calendar events using the rrule.js engine for recurring events.
+* Scheduling is simular to Google Calendar events and uses the rrule.js engine for recurring events.
 * rrule.js supports recurrence rules as defined in the iCalendar RFC.
 
 
@@ -30,8 +30,12 @@ Presently IBS Events is in its Beta phase of development and all testing and rep
 How can I display all the ibs_events I have created? It is nesessary to create a post template for your theme if your theme does not support display of custom post-types.
 
 == Screenshots ==
-1. Displaying all IBS Event posts.
-2. Adding a new IBS Event post.
+1. Adding an IBS Event post.
+2. Displaying all IBS Event posts.
+3. Calendar view.
+4. Widget view.
+
+
 
 == Changelog ==
 
