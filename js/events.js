@@ -206,10 +206,14 @@ function IBS_Event(args) {
         });
         resetPickers = function () {
             var ts = parseInt($('#ibs-event-start').val());
+            if (ts === 0)
+                ts = moment().startOf('day').unix();
             var d = moment.unix(ts).toDate();
             $('#ibs-event-start-date').datepicker('setDate', d);
             $('#ibs-event-start-time').timepicker('setTime', d);
             ts = parseInt($('#ibs-event-end').val());
+            if (ts === 0)
+                ts = moment().endOf('day').unix();
             d = moment.unix(ts).toDate();
             $('#ibs-event-end-date').datepicker('setDate', d);
             $('#ibs-event-end-time').timepicker('setTime', d);
@@ -217,42 +221,43 @@ function IBS_Event(args) {
         resetPickers();
 
         $('#ibs-event-allday').click(function () {
-            if ($(this).is(':checked')) {
-                $('.event-allday').attr('disabled', true);
-            } else {
-                $('.event-allday').attr('disabled', false);
-            }
             $('.ibs-datepicker').trigger('change');
         });
 
         $('.ibs-datepicker, .ibs-timepicker').on('change', '', {}, function () {
             var sdate = moment($('#ibs-event-start-date').datepicker('getDate')).startOf('day');
             var stime = $('#ibs-event-start-time').timepicker('getSecondsFromMidnight');
+
             var edate = moment($('#ibs-event-end-date').datepicker('getDate')).startOf('day');
             var etime = $('#ibs-event-end-time').timepicker('getSecondsFromMidnight');
-            if (edate.diff(sdate) < 0) {
-                alert('end date cannot be before start date.');
-                resetPickers();
-                return;
-            }
-            if (sdate.diff(edate) === 0 && etime < stime) {
-                alert('end time cannot be before start time.');
-                resetPickers();
-                return;
-            }
-            if ($('#ibs-event-allDay').is(':checked')) {
+
+            if ($('#ibs-event-allday').is(':checked')) {
                 sdate = sdate.startOf('day');
-                edate = edate.endOf('day');
+                edate = moment(sdate).endOf('day');
             } else {
+                if (edate.diff(sdate) < 0) {
+                    edate = moment(sdate.format());
+                }
+                if (stime > etime) {
+                    etime = stime;
+                }
                 sdate = sdate.add(stime, 'seconds');
                 edate = edate.add(etime, 'seconds');
             }
             $('#ibs-event-start-date').datepicker('setDate', sdate.toDate());
             $('#ibs-event-start-time').timepicker('setTime', sdate.toDate());
+
             $('#ibs-event-end-date').datepicker('setDate', edate.toDate());
             $('#ibs-event-end-time').timepicker('setTime', edate.toDate());
+
             $('#ibs-event-start').val(sdate.unix());
             $('#ibs-event-end').val(edate.unix());
+            
+            if ($('#ibs-event-allday').is(':checked')) {
+                $('.event-allday').attr('disabled', true);
+            } else {
+                $('.event-allday').attr('disabled', false);
+            }
         });
         if ($('#ibs-event-recurr').is(':checked')) {
             var rule = new RRule(RRule.parseString($('#ibs-event-repeat').val()));
@@ -260,15 +265,15 @@ function IBS_Event(args) {
             for (var i in options) {
                 switch (i) {
                     case 'byweekday' :
-                         $('input[name=byweekday]').each(function (i, item) {
-                             var wd = parseInt($(this).val());
-                             for(j in options['byweekday']){
-                                 if (options['byweekday'][j].weekday === wd){
-                                     $(this).attr('checked', true);
-                                 }
-                             }
+                        $('input[name=byweekday]').each(function (i, item) {
+                            var wd = parseInt($(this).val());
+                            for (j in options['byweekday']) {
+                                if (options['byweekday'][j].weekday === wd) {
+                                    $(this).attr('checked', true);
+                                }
+                            }
                         });
-                    break;
+                        break;
                     case 'dtstart' :
                         $('#repeat-dtstart').datepicker('setDate', options['dtstart']);
                         break;
@@ -304,8 +309,8 @@ function IBS_Event(args) {
                 }
             }
 
-        }else{
-            
+        } else {
+
         }
     };
 })(jQuery);

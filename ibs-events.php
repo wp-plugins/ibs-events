@@ -129,7 +129,7 @@ class IBS_EVENTS {
         wp_nonce_field(basename(__FILE__), 'ibs-event-nonce');
 
         $event_start = get_post_meta($post->ID, 'ibs-event-start', true);
-        $event_start = empty($event_start) ? time() : $event_start;
+        $event_start = empty($event_start) ? 0 : $event_start;
 
         $event_end = get_post_meta($post->ID, 'ibs-event-end', true);
         $event_end = empty($event_end) ? $event_start : $event_end;

@@ -19,6 +19,7 @@
         <input id="ibs-event-end" type="hidden" value="<?php echo $event_end; ?>" name="ibs-event-end"  />
         <input class="ibs-timepicker event-allday" id="ibs-event-end-time" type="text" placeholder="end time" value="" />
     </div>
+
     <div class="widefat" ><label class="color-label" >Event color </label>
         <div class="color-box color-box-selected" style = "background-color: #5484ed;"></div>
         <div class="color-box" style = "background-color: #a4bdfc;"></div>
@@ -40,22 +41,22 @@
     </div>  
     <div id="repeat-options">
         <div class="repeat-option">
-            <input name="freq" type="radio" value="3" class="cb" /><label>Daily</label>
-            <input name="freq" type="radio" value="2" class="cb" checked /><label>Weekly</label>
-            <input name="freq" type="radio" value="1" class="cb" /><label>Monthly</label>
-            <input name="freq" type="radio" value="0" class="cb" /><label>Yearly</label>
+            <label>Daily</label><input name="freq" type="radio" value="3" class="cb" />
+            <label>Weekly</label><input name="freq" type="radio" value="2" class="cb" checked />
+            <label>Monthly</label><input name="freq" type="radio" value="1" class="cb" />
+            <label>Yearly</label><input name="freq" type="radio" value="0" class="cb" />
             <label style="margin-left:10px;" for="ibs-event-frequency">Every</label>
             <input id="repeat-interval" style="width:50px;" type="number" value="1" min="1" name="interval"/><label id="repeat-interval-type">week</label>
         </div>
         <div class="repeat-option widefat">
             <label class="option-name" for="ibs-event-repeats-on">Repeats on</label>
-            <input type="checkbox" name="byweekday" class="cb" title="Sunday" value="6"><label>Sun</label>
-            <input type="checkbox" name="byweekday" class="cb" title="Monday"  value="0"><label>Mon</label>
-            <input type="checkbox" name="byweekday" class="cb" title="Tuesday" value="1"><label>Tue</label>
-            <input type="checkbox" name="byweekday" class="cb" title="Wednesday" value="2"><label>Wed</label>
-            <input type="checkbox" name="byweekday" class="cb" title="Thursday" value="3"><label>Thu</label>
-            <input type="checkbox" name="byweekday" class="cb" title="Friday" value="4"><label>Fri</label>
-            <input type="checkbox" name="byweekday" class="cb" title="Saturday" value="5"><label>Sat</label>
+            <label>Sun</label><input type="checkbox" name="byweekday" class="cb" title="Sunday" value="6">
+            <label>Mon</label><input type="checkbox" name="byweekday" class="cb" title="Monday"  value="0">
+            <label>Tue</label><input type="checkbox" name="byweekday" class="cb" title="Tuesday" value="1">
+            <label>Wed</label> <input type="checkbox" name="byweekday" class="cb" title="Wednesday" value="2">
+            <label>Thu</label><input type="checkbox" name="byweekday" class="cb" title="Thursday" value="3">
+            <label>Fri</label><input type="checkbox" name="byweekday" class="cb" title="Friday" value="4">
+            <label>Sat</label><input type="checkbox" name="byweekday" class="cb" title="Saturday" value="5">
         </div>
         <div class="repeat-option widefat">
             <label class="option-name">Starting</label>

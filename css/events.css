@@ -99,3 +99,7 @@
 }
 .repeat-not-active label:not(.option-name){
 }
+.ibs-event-error{
+    color:white !important;
+    background-color:red !important;
+}
