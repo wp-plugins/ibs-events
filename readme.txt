@@ -35,10 +35,10 @@ How can I see IBS Events posts in my blog? Set IBS Events Admin option "Post IBS
 == Screenshots ==
 1. Adding an IBS Event post.
 2. Displaying all IBS Event posts.
-3. Calendar view.
-4. Widget view.
-
-
+3. IBS Events in calendar view
+4. IBS Events in widget view.
+5. Widget set up.
+6. Admin IBS Events options.
 
 == Changelog ==
 
