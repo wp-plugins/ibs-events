@@ -4,7 +4,7 @@
   Plugin URI: http://wordpress.org/extend/plugins/
   Description: Adds post type IBS Event which is an optional event source for IBS Calendar..
   Author: HMoore71
-  Version: 0.2
+  Version: 1.0
   Author URI: http://indianbendsolutions.net
   License: GPL2
   License URI: none
@@ -15,7 +15,7 @@
   WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-define('IBS_EVENTS_VERSION', '0.1');
+define('IBS_EVENTS_VERSION', '1.0');
 register_activation_hook(__FILE__, array('IBS_EVENTS', 'defaults'));
 register_activation_hook(__FILE__, array('IBS_EVENTS', 'custom_post_type'));
 
@@ -192,7 +192,7 @@ class IBS_EVENTS {
     static function admin_script_style($hook) {
         global $post_type;
         if (( 'post.php' == $hook || 'post-new.php' == $hook ) && ( 'ibs_event' == $post_type )) {
-            
+
             wp_enqueue_script(self::$core_handles);
 
             $theme = self::$options['ui_theme'];
@@ -549,10 +549,10 @@ class IBS_EVENTS {
                 }
             }
         }
+        array_walk_recursive($args, array(__CLASS__, 'fixBool'));
         $args['id'] = self::$add_script;
         $args['ajaxUrl'] = admin_url("admin-ajax.php");
         $id = self::$add_script;
-
         $html = '<div id="ibs-list-events-id" class="' . $args['align'] . ' ibs-events" style="width:%w;" ></div>';
         $html = str_replace('-id', '-' . $id, $html);
         $html = str_replace('%w', $args['width'], $html);
